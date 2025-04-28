@@ -3,33 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NFT Marketplace</title>
+  <title>RIQOMMERCE NFT Marketplace</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <h1>Welcome to MAMANGKUUU LESGOOOOOOOOOOOOOOOOOOOOO</h1>
-  <div id="products-container"></div>
+  <header>
+    <nav>
+      <div class="logo">
+        <i class="fas fa-ape"></i>
+        <span>APE-X NFT</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">Artists</a></li>
+        <li><a href="#">Community</a></li>
+      </ul>
+      <div class="wallet-btn">
+        <button><i class="fas fa-wallet"></i> Connect Wallet</button>
+      </div>
+    </nav>
+  </header>
 
-  <script>
-    async function loadProducts() {
-      const response = await fetch('/api/products');
-      const products = await response.json();
+  <section class="hero">
+    <div class="hero-content">
+      <h1>FUTURE <span class="highlight">APE</span> COLLECTION</h1>
+      <p>Discover, collect, and trade extraordinary futuristic ape NFTs from the metaverse</p>
+      <button class="cta-button">Explore Collection</button>
+    </div>
+  </section>
 
-      const productsContainer = document.getElementById('products-container');
-      products.forEach(product => {
-        const productElement = document.createElement('div');
-        productElement.classList.add('product');
-        productElement.innerHTML = `
-          <h2>${product.nama}</h2>
-          <p>${product.deskripsi}</p>
-          <p>Price: $${product.harga}</p>
-          <img src="${product.gambar_url}" alt="${product.nama}" />
-        `;
-        productsContainer.appendChild(productElement);
-      });
-    }
+  <section class="products">
+    <div class="section-header">
+      <h2>Featured NFTs</h2>
+      <div class="filter-options">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Trending</button>
+        <button class="filter-btn">New</button>
+      </div>
+    </div>
+    <div id="products-container" class="products-grid"></div>
+  </section>
 
-    loadProducts();
-  </script>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <i class="fas fa-ape"></i>
+        <span>APE-X NFT</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>Marketplace</h3>
+          <ul>
+            <li><a href="#">All NFTs</a></li>
+            <li><a href="#">New</a></li>
+            <li><a href="#">Art</a></li>
+            <li><a href="#">Music</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Platform Status</a></li>
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 RIQOMMERCE NFT Marketplace. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
