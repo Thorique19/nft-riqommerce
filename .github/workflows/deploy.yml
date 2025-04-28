@@ -1,0 +1,36 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # Deploy when pushing to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+
+    - name: Deploy to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no ec2-user@ec2-user@52.64.37.233 << 'EOF'
+          # Navigate to your app directory
+          cd /home/ec2-user/nft-riqommerce  # Adjust this to your app's directory
+          
+          # Pull the latest changes from GitHub
+          git pull origin main
+
+          # Install any new dependencies
+          npm install --production
+
+          # Restart the Node.js app
+          pm2 stop server.js || true  # Stop PM2 process if it exists (useful for cleanup)
+          nohup node server.js > app.log 2>&1 &  # Start the app in the background with node
+        EOF
