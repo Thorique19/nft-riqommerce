@@ -19,18 +19,14 @@ jobs:
         ssh-private-key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
     - name: Deploy to EC2
+      env:
+        HOST: 52.64.37.233
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@ec2-user@52.64.37.233 << 'EOF'
-          # Navigate to your app directory
-          cd /home/ec2-user/nft-riqommerce  # Adjust this to your app's directory
-          
-          # Pull the latest changes from GitHub
+        ssh -o StrictHostKeyChecking=no ec2-user@$HOST << 'EOF'
+          cd /home/ec2-user/nft-riqommerce
           git pull origin main
-
-          # Install any new dependencies
           npm install --production
-
-          # Restart the Node.js app
-          pm2 stop server.js || true  # Stop PM2 process if it exists (useful for cleanup)
-          nohup node server.js > app.log 2>&1 &  # Start the app in the background with node
+          sudo systemctl restart nginx
+          nohup node server.js > app.log 2>&1 &
         EOF
+
