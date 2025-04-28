@@ -32,6 +32,7 @@ app.get('/api/products', async (req, res) => {
 });
 
 // Start server
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {  // Corrected this line
   console.log(`Server running on port ${port}`);
 });
+
