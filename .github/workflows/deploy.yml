@@ -30,7 +30,7 @@ jobs:
           # Install any new dependencies
           npm install --production
 
-          # Restart the Node.js app
-          pm2 stop server.js || true  # Stop PM2 process if it exists (useful for cleanup)
+          # Restart nginx
+          sudo systemctl restart nginx
           nohup node server.js > app.log 2>&1 &  # Start the app in the background with node
         EOF
