@@ -283,10 +283,12 @@ button:hover {
   margin-bottom: 1rem;
   font-size: 0.9rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; /* For WebKit/Blink-based browsers like Chrome and Safari */
   -webkit-box-orient: vertical;
   overflow: hidden;
+  line-clamp: 2; /* Standard property for browsers that support it */
 }
+
 
 .price-badge {
   background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
