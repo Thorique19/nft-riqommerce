@@ -34,7 +34,70 @@ async function loadProducts() {
           <button onclick="loadProducts()">Retry</button>
         </div>
       `;
+  
+      // For demo purposes, load placeholder data if API fails
+      loadMockData();
     }
+  }
+  
+  // Function to load mock data for demo purposes
+  function loadMockData() {
+    const mockProducts = [
+      {
+        id: 1,
+        nama: "Cyber Ape #487",
+        deskripsi: "Ultra rare cybernetic ape with neural implants and holographic eyes",
+        harga: 2.5,
+        gambar_url: "https://placehold.co/400x400/10121d/00ffaa?text=Cyber+Ape+%23487"
+      },
+      {
+        id: 2,
+        nama: "Neon Gorilla #032",
+        deskripsi: "Luminescent primate with quantum computing capabilities",
+        harga: 1.8,
+        gambar_url: "https://placehold.co/400x400/10121d/9900ff?text=Neon+Gorilla"
+      },
+      {
+        id: 3,
+        nama: "Space Monkey #772",
+        deskripsi: "Interstellar explorer with advanced genetic modifications",
+        harga: 3.2,
+        gambar_url: "https://placehold.co/400x400/10121d/00ffaa?text=Space+Monkey"
+      },
+      {
+        id: 4,
+        nama: "Digital Orangutan #114",
+        deskripsi: "Sentient AI trapped in an orangutan's digital body",
+        harga: 2.7,
+        gambar_url: "https://placehold.co/400x400/10121d/9900ff?text=Digital+Orangutan"
+      },
+      {
+        id: 5,
+        nama: "Quantum Chimp #256",
+        deskripsi: "Exists simultaneously across multiple metaverse dimensions",
+        harga: 4.5,
+        gambar_url: "https://placehold.co/400x400/10121d/00ffaa?text=Quantum+Chimp"
+      },
+      {
+        id: 6,
+        nama: "Hologram Baboon #629",
+        deskripsi: "Projection entity with reality-altering capabilities",
+        harga: 1.9,
+        gambar_url: "https://placehold.co/400x400/10121d/9900ff?text=Hologram+Baboon"
+      }
+    ];
+  
+    // Clear container
+    const productsContainer = document.getElementById('products-container');
+    productsContainer.innerHTML = '';
+    
+    // Render mock products with delay
+    mockProducts.forEach((product, index) => {
+      setTimeout(() => {
+        renderProduct(product);
+        document.querySelectorAll('.product')[index].classList.add('visible');
+      }, index * 150);
+    });
   }
   
   // Function to render a single product
@@ -47,12 +110,12 @@ async function loadProducts() {
     
     // Generate random creator image for demo purposes
     const creatorId = Math.floor(Math.random() * 1000);
-    const creatorImg = `https://placehold.co/100?text=User${creatorId}`;
+    const creatorImg = `https://placehold.co/100/10121d/00ffaa?text=User${creatorId}`;
     
     // Create HTML structure for product card with enhanced UI
     productElement.innerHTML = `
       <img src="${product.gambar_url}" alt="${product.nama}" />
-      <div class="price-badge">$${product.harga.toLocaleString()}</div>
+      <div class="price-badge">${product.harga} ETH</div>
       <div class="product-info">
         <h2>${product.nama}</h2>
         <p>${product.deskripsi}</p>
@@ -108,4 +171,15 @@ async function loadProducts() {
         }
       });
     });
+  
+    // Add animation to the hero section
+    const heroContent = document.querySelector('.hero-content');
+    heroContent.style.opacity = '0';
+    heroContent.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+      heroContent.style.transition = 'all 1s ease-out';
+      heroContent.style.opacity = '1';
+      heroContent.style.transform = 'translateY(0)';
+    }, 300);
   });
