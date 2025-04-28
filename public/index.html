@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NFT Marketplace</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Welcome to the NFT Marketplace</h1>
+  <div id="products-container"></div>
+
+  <script>
+    async function loadProducts() {
+      const response = await fetch('/api/products');
+      const products = await response.json();
+
+      const productsContainer = document.getElementById('products-container');
+      products.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.classList.add('product');
+        productElement.innerHTML = `
+          <h2>${product.nama}</h2>
+          <p>${product.deskripsi}</p>
+          <p>Price: $${product.harga}</p>
+          <img src="${product.gambar_url}" alt="${product.nama}" />
+        `;
+        productsContainer.appendChild(productElement);
+      });
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>
