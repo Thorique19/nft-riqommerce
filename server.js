@@ -17,7 +17,6 @@ const client = new Client({
   }
 });
 
-
 client.connect();
 
 // Routes
@@ -32,6 +31,6 @@ app.get('/api/products', async (req, res) => {
 });
 
 // Start server
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {  // Only call app.listen once
   console.log(`Server running on port ${port}`);
 });
