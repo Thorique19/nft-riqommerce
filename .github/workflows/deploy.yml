@@ -22,7 +22,7 @@ jobs:
       env:
         HOST: 52.64.37.233
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@$HOST << 'EOF'
+        ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ec2-user@$HOST << 'EOF'
           cd /home/ec2-user/nft-riqommerce
           git pull origin main
           npm install --production
